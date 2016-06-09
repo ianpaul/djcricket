@@ -2,9 +2,9 @@
 /*
 This is a Slack /slashcommand that connects to the Genius.com API.
 It requires the user to enter the name of the artist and the song name.
-If the user only enters an artist's name it may not return the correct result. 
+If the user only enters an artist's name it will return whatever Genius offers as the first search result. 
 
-This script is based on Is It Up for Slack: https://github.com/mccreath/istiupforslack; mccreath@gmail.com
+This script is based on Is It Up for Slack: https://github.com/mccreath/isitup-for-slack; mccreath@gmail.com
 
 */
 
@@ -13,14 +13,14 @@ $text = $_POST['text'];
 $token = $_POST['token'];
 
 # Check the token and make sure the request is from our team 
-if($token != 'L88Sl3s0SHi0xdgeXp2mT4gP'){ 
+if($token != '[token]'){ 
   $msg = ":squirrel: The token for the slash command doesn't match. We're done here until IT fixes it. Don't worry, Squirrelock is on the case.";
   die($msg);
   echo $msg;
 }
 
 #this variable sets up what we'll be sending to Genius.com
-$genius_check = "https://api.genius.com/search?access_token=BAkkm2GLcTlWh1g1DPYjBBCo9MVlkRDIYnqGI_V8R_EL5AcHtxr6rwdrOdVwP46N&q=".urlencode($text);
+$genius_check = "https://api.genius.com/search?access_token=[access token]&q=".urlencode($text);
 
 # Let's set up cURL to do something that I hope will work
 $ch = curl_init($genius_check);
